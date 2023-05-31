@@ -8,7 +8,7 @@
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/AquaPropEm.png",
-      "resizeMode": "cover",
+      "resizeMode": "contain",
       "backgroundColor": "rgb(45, 45, 45)"
     },
     "assetBundlePatterns": [

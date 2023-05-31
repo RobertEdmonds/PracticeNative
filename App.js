@@ -34,7 +34,6 @@ export default function App() {
       }
     });
   } 
-  console.log(user)
   // Alert.alert('Simple Button pressed')
   return (
     <>
