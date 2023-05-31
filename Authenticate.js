@@ -19,7 +19,6 @@ export default function Authenticate({handleLogout}){
             setSites(site)
         }))
     },[setSites])
-    console.log(sites)
 
     return(
         <>
@@ -66,6 +65,30 @@ export default function Authenticate({handleLogout}){
                             <Text style={styles.completed_title_text}>{site.location}</Text>
                             <Text style={styles.completed_title_text}>{site.crew}</Text>
                             <Text style={styles.completed_title_text}>{siteDate[1]}/{siteDate[2]}/{siteDate[0]}</Text>
+                            <View style={styles.info_complete_container}>
+                                <Text style={styles.info_complete_text}>Total Sand On-Site</Text>
+                            </View>
+                            <View style={styles.info_complete_container}>
+                                <Text style={styles.info_complete_text}>{(site.total_on_site).toLocaleString("en-US")}</Text>
+                            </View>
+                            <View style={styles.info_complete_container}>
+                                <Text style={styles.info_complete_text}>Total Sand Used</Text>
+                            </View>
+                            <View style={styles.info_complete_container}>
+                                <Text style={styles.info_complete_text}>{(site.total_sand_used).toLocaleString("en-US")}</Text>
+                            </View>
+                            <View style={styles.info_complete_container}>
+                                <Text style={styles.info_complete_text}>Total Sand Delivered</Text>
+                            </View>
+                            <View style={styles.info_complete_container}>
+                                <Text style={styles.info_complete_text}>{(site.total_delivered).toLocaleString("en-US")}</Text>
+                            </View>
+                            <View style={styles.info_complete_container}>
+                                <Text style={styles.info_complete_text}>Trash Sand</Text>
+                            </View>
+                            <View style={styles.info_complete_container}>
+                                <Text style={styles.info_complete_text}>{(site.trash_sand).toLocaleString("en-US")}</Text>
+                            </View>
                         </View>
                     )
                 })}
@@ -109,6 +132,19 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginTop: StatusBar.currentHeight || 0,
       },
+      info_complete_container: {
+        flex: 1,
+        backgroundColor: 'tan',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        width: '100%',
+        borderTopWidth: 1,
+        borderTopColor: "black",
+        borderBottomWidth: 1,
+        borderBottomColor: "black",
+        marginTop: StatusBar.currentHeight || 0,
+      },
     item: {
         backgroundColor: '#f9c2ff',
         padding: 20,
@@ -123,6 +159,11 @@ const styles = StyleSheet.create({
     info_text: {
         fontSize: 16,
         color: "white",
+        fontWeight: "bold",
+        
+      },
+      info_complete_text: {
+        fontSize: 16,
         fontWeight: "bold",
         
       },
