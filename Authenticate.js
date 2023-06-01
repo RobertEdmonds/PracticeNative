@@ -46,7 +46,7 @@ export default function Authenticate({handleLogout}){
           />
           </View>
         </Header> 
-        <SafeAreaView >
+        <SafeAreaView style={styles.safe_view}>
              <ScrollView style={styles.scrollView}>
             {completed ? (
                 sites.filter(site => site.completed).map(site => {
@@ -84,7 +84,7 @@ export default function Authenticate({handleLogout}){
                     )
                 })
             ) : (
-                sites.filter(site => !site.completed).map(site => {
+                sites.filter(site => !site.completed).reverse().map(site => {
                     const siteDate = site.start_date.split("-")
                     return(
                         <View style={styles.container} key={site.id}>
@@ -120,12 +120,18 @@ export default function Authenticate({handleLogout}){
                 })
             )}
              </ScrollView>
+             {/* <View style={styles.scrollView}></View> */}
         </SafeAreaView>
+
         </>
     )
 }
 
 const styles = StyleSheet.create({
+    safe_view: {
+        backgroundColor: 'rgb(45, 45, 45)',
+        height: "100%"
+    },
     container: {
       flex: 1,
       backgroundColor: 'rgb(21, 75, 126)',
