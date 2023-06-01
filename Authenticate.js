@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useRef} from 'react'
 import { Button, 
     SafeAreaView, 
     ScrollView, 
@@ -6,7 +6,8 @@ import { Button,
     StatusBar, 
     View, 
     Text,
-    TextInput } from 'react-native'
+    TextInput, 
+    FlatList} from 'react-native'
 import { Header } from 'react-native-elements'
 import { Left, Right, Icon, useTheme } from 'native-base';
 import { renderNode } from 'react-native-elements/dist/helpers';
@@ -14,6 +15,7 @@ import { renderNode } from 'react-native-elements/dist/helpers';
 export default function Authenticate({handleLogout}){
     const [ sites, setSites ] = useState([])
     const [ completed, setCompleted ] = useState(false)
+
     useEffect(() => {
         fetch('http://127.0.0.1:3000/api/mobile_sites')
         .then(resp => resp.json().then(site => {
@@ -47,7 +49,7 @@ export default function Authenticate({handleLogout}){
           </View>
         </Header> 
         <SafeAreaView style={styles.safe_view}>
-             <ScrollView style={styles.scrollView}>
+             <ScrollView contentContainerStyle={styles.scroll_view}>
             {completed ? (
                 sites.filter(site => site.completed).map(site => {
                     const siteDate = site.start_date.split("-")
@@ -120,9 +122,8 @@ export default function Authenticate({handleLogout}){
                 })
             )}
              </ScrollView>
-             {/* <View style={styles.scrollView}></View> */}
         </SafeAreaView>
-
+        <View style={styles.container}></View>
         </>
     )
 }
@@ -130,13 +131,18 @@ export default function Authenticate({handleLogout}){
 const styles = StyleSheet.create({
     safe_view: {
         backgroundColor: 'rgb(45, 45, 45)',
-        height: "100%"
+        height: "100%",
+    },
+    scroll_view:{
+        flexGrow: 1,
+        padding: 10,
+        paddingBottom: 150,
     },
     container: {
       flex: 1,
       backgroundColor: 'rgb(21, 75, 126)',
       alignItems: 'center',
-      marginBottom: 4,
+      marginBottom: 16,
       justifyContent: 'center',
       marginTop: StatusBar.currentHeight || 0,
     },
