@@ -11,17 +11,27 @@ import { Button,
 import { Header } from 'react-native-elements'
 import { Left, Right, Icon, useTheme } from 'native-base';
 import { renderNode } from 'react-native-elements/dist/helpers';
+import Footer from './Footer';
 
 export default function Authenticate({handleLogout}){
     const [ sites, setSites ] = useState([])
+    const [ allSites, setAllSites] = useState([])
     const [ completed, setCompleted ] = useState(false)
 
     useEffect(() => {
         fetch('http://127.0.0.1:3000/api/mobile_sites')
         .then(resp => resp.json().then(site => {
+            setAllSites(site)
             setSites(site)
         }))
     },[setSites])
+
+    const handleSearch = (value) => {
+        const searchSite = allSites.filter(site => {
+            return(site.location.toUpperCase().includes(value.toUpperCase()) || site.crew.toUpperCase().includes(value.toUpperCase()))
+        })
+        setSites(searchSite)
+    }
 
     return(
         <>
@@ -38,7 +48,7 @@ export default function Authenticate({handleLogout}){
           <TextInput placeholder="Search" 
             style={styles.text_input} 
             editable={true} 
-            onChangeText={text => setUsername(text)}/>
+            onChangeText={text => handleSearch(text)}/>
             <View style={styles.header_button}>
           <Button
             title="Logout"
@@ -123,7 +133,7 @@ export default function Authenticate({handleLogout}){
             )}
              </ScrollView>
         </SafeAreaView>
-        <View style={styles.container}></View>
+        <Footer />
         </>
     )
 }
