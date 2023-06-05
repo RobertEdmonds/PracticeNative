@@ -9,8 +9,6 @@ import { Button,
     TextInput, 
     FlatList} from 'react-native'
 import { Header } from 'react-native-elements'
-import { Left, Right, Icon, useTheme } from 'native-base';
-import { renderNode } from 'react-native-elements/dist/helpers';
 import Footer from './Footer';
 
 export default function Authenticate({handleLogout}){
@@ -59,10 +57,12 @@ export default function Authenticate({handleLogout}){
           </View>
         </Header> 
         <SafeAreaView style={styles.safe_view}>
-        <View style={styles.qr_button}>
-              <Button title='QR Code Reader' color="white" style={styles.bottom_button} onPress={(e) => console.log(e)} />
+            {completed ? (<></>): (
+            <View style={styles.qr_button}>
+              <Button title='QR Code Reader' color="black" style={styles.bottom_button} onPress={(e) => console.log(e)} />
             </View>
-             <ScrollView contentContainerStyle={styles.scroll_view}>
+            )}
+            <ScrollView contentContainerStyle={styles.scroll_view}>
             {completed ? (
                 sites.filter(site => site.completed).map(site => {
                     const siteDate = site.start_date.split("-")
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       marginBottom: 16,
       justifyContent: 'center',
-      marginTop: StatusBar.currentHeight || 0,
+      marginTop: 0,
     },
     info_container: {
         flex: 1,
@@ -170,17 +170,17 @@ const styles = StyleSheet.create({
         borderTopColor: "white",
         borderBottomWidth: 1,
         borderBottomColor: "white",
-        marginTop: StatusBar.currentHeight || 0,
+        // marginTop: StatusBar.currentHeight || 0,
       },
     text_input:{
-        marginTop: StatusBar.currentHeight || 12,
+        // marginTop: 0,
         width: 100,
         height: 35,
         padding: 5,
         backgroundColor: "white",
     }, 
     header_button:{
-        marginTop: StatusBar.currentHeight || 12,
+        // marginTop: 0,
         width: 110,
         backgroundColor: "rgb(21, 75, 126)",
     },
@@ -234,16 +234,18 @@ const styles = StyleSheet.create({
       },
       qr_button:{
         flexGrow: 1,
-        justifyContent: 'flex-bottom',
+        justifyContent: 'center',
         marginBottom: 5,
         marginTop: 10,
+        height: 45,
         borderRadius: 25,
         width: "100%",
         position: 'fixed',
-        backgroundColor: "rgb(21, 75, 126)",
+        backgroundColor: "tan",
     },
     bottom_button:{
         position: 'fixed',
+        fontWeight: 'bold',
         bottom:0
     },
 })

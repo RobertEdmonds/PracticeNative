@@ -1,8 +1,12 @@
 // import { StatusBar } from 'expo-status-bar';
 import { useState, useEffect } from 'react';
 import { StyleSheet, Button, Alert, View, StatusBar } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Authenticate from './Authenticate';
 import Login from './Login';
+
+const Stack = createNativeStackNavigator()
 
 export default function App() {
   const [ user, setUser ] = useState(null)
@@ -39,12 +43,15 @@ export default function App() {
     <>
     <StatusBar
         backgroundColor="rgb(45, 45, 45)" 
-        barStyle="light-content"
+        barStyle="default"
       />
+    <NavigationContainer>
     {user && (
-      <View style={styles.view}>
-        <Authenticate handleLogout={handleLogout} />
-      </View>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" style={styles.view}>
+          {() => <Authenticate handleLogout={handleLogout} />}
+        </Stack.Screen>
+      </Stack.Navigator>
     )}
     {companyUser &&  (
       <View style={styles.view}>
@@ -56,6 +63,7 @@ export default function App() {
         <Login setUser={setUser} setCompanyUser={setCompanyUser}/>
       </View>
     )}
+    </NavigationContainer>
     </>
   );
 }
