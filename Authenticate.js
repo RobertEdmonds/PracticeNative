@@ -8,10 +8,9 @@ import { Button,
     Text,
     TextInput, 
     FlatList} from 'react-native'
-import { Header } from 'react-native-elements'
-import Footer from './Footer';
+import { Header } from 'react-native-elements';
 
-export default function Authenticate({handleLogout}){
+export default function Authenticate({handleLogout, navigation}){
     const [ sites, setSites ] = useState([])
     const [ allSites, setAllSites] = useState([])
     const [ completed, setCompleted ] = useState(false)
@@ -59,7 +58,7 @@ export default function Authenticate({handleLogout}){
         <SafeAreaView style={styles.safe_view}>
             {completed ? (<></>): (
             <View style={styles.qr_button}>
-              <Button title='QR Code Reader' color="black" style={styles.bottom_button} onPress={(e) => console.log(e)} />
+              <Button title='QR Code Reader' color="black" style={styles.bottom_button} onPress={() => navigation.navigate('QR Scanner')} />
             </View>
             )}
             <ScrollView contentContainerStyle={styles.scroll_view}>

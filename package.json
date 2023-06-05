@@ -16,6 +16,7 @@
     "native-base": "^3.4.28",
     "react": "18.2.0",
     "react-native": "0.71.8",
+    "react-native-camera-kit": "^13.0.0",
     "react-native-elements": "^3.4.3"
   },
   "devDependencies": {
