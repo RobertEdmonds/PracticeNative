@@ -59,6 +59,9 @@ export default function Authenticate({handleLogout}){
           </View>
         </Header> 
         <SafeAreaView style={styles.safe_view}>
+        <View style={styles.qr_button}>
+              <Button title='QR Code Reader' color="white" style={styles.bottom_button} onPress={(e) => console.log(e)} />
+            </View>
              <ScrollView contentContainerStyle={styles.scroll_view}>
             {completed ? (
                 sites.filter(site => site.completed).map(site => {
@@ -131,9 +134,9 @@ export default function Authenticate({handleLogout}){
                     )
                 })
             )}
-             </ScrollView>
+            </ScrollView>
         </SafeAreaView>
-        <Footer />
+        
         </>
     )
 }
@@ -144,7 +147,7 @@ const styles = StyleSheet.create({
         height: "100%",
     },
     scroll_view:{
-        flexGrow: 1,
+        flexGrow: 10,
         padding: 10,
         paddingBottom: 150,
     },
@@ -229,5 +232,18 @@ const styles = StyleSheet.create({
         color: "black",
         fontWeight: "bold"
       },
-
+      qr_button:{
+        flexGrow: 1,
+        justifyContent: 'flex-bottom',
+        marginBottom: 5,
+        marginTop: 10,
+        borderRadius: 25,
+        width: "100%",
+        position: 'fixed',
+        backgroundColor: "rgb(21, 75, 126)",
+    },
+    bottom_button:{
+        position: 'fixed',
+        bottom:0
+    },
 })
