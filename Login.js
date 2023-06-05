@@ -16,11 +16,12 @@ export default function Login({setUser}){
     const [ username, setUsername ] = useState('')
     const [ password, setPassword ] = useState('')
     
-    function handleSubmit(e) {
+    function handleSubmit() {
         const dataForm = {
           username,
           password,
         };
+        console.log(dataForm)
         fetch("http://127.0.0.1:3000/api/login", {
           method: "POST",
           headers: {
