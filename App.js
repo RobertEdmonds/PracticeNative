@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Authenticate from './Authenticate';
 import Login from './Login';
-import Footer from './Footer';
+import QRScanner from './QRScanner';
 
 const Stack = createNativeStackNavigator()
 
@@ -52,7 +52,7 @@ export default function App() {
         <Stack.Screen name="Home" style={styles.view}>
           {(props) => <Authenticate {...props} handleLogout={handleLogout}/>}
         </Stack.Screen>
-        <Stack.Screen name="QR Scanner" component={Footer}/>
+        <Stack.Screen name="QR Scanner" component={QRScanner}/>
       </Stack.Navigator>
     )}
     {companyUser &&  (

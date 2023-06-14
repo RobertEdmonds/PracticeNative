@@ -21,7 +21,6 @@ export default function Login({setUser}){
           username,
           password,
         };
-        console.log(dataForm)
         fetch("http://127.0.0.1:3000/api/login", {
           method: "POST",
           headers: {
